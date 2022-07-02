@@ -1,3 +1,5 @@
+package lesson2;
+
 class SumPractice {
     public static void main(String[] args) {
         int x = 3, y = 4;
@@ -7,6 +9,13 @@ class SumPractice {
         int iteration = sumByIteration(x, y);
     }
 
+    /**
+     * 普通递归实现:求两数之和
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     private static int sumByRecursion(int x, int y) {
         if (x == 0) {
             return y;
@@ -14,6 +23,13 @@ class SumPractice {
         return 1 + sumByRecursion(x - 1, y);
     }
 
+    /**
+     * 线性递归(迭代)实现:求两数之和
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     private static int sumByIteration(int x, int y) {
         if (x == 0) {
             return y;

@@ -5,6 +5,8 @@
 ## 目的
 本目录,记录学习SICP课程的一些笔记和基于Java实现的练习, 后续会补充一些基于原课程记录的Lisp联系
 
+本课程使用编程语言`Lisp`
+
 # Lesson 1: Lisp概览
 For English:
 
