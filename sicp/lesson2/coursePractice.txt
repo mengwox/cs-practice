@@ -1,0 +1,42 @@
+lesson2 视频课程:
+了解每个"精灵"的名字
+
+if表达式:
+(if <predicate>
+     <consequent>
+     <alternative>)
+
+Peano arithmetic: two ways to add whole numbers:
+a linear iteration:线性迭代
+(define (sum x y)
+    (if (= x 0)
+        y
+        (sum (-1+ x) (1+ y))))
+
+a linear recursion:线性递归
+(define (sum x y)
+    (if (= x 0)
+        y
+        (1+ (sum (-1+ x) y))))
+
+Fibonacci斐波那契数列:
+f(x+2) = f(x+1) + f(x)
+f(0) = 0;
+f(1) = 1;
+
+such like:
+0 1 1 2 3 ...
+
+Recursion of Fibonacci: time = O(fib(n)), space = O(n).效率低下
+(define (fib x)
+    (if (< x 2)
+        x
+        (+ (fib (- x 1))
+           (fib (- x 2)))))
+
+Iteration of Fibonacci:
+x is index, p is (index-1) value, pp is (index - 2) value, y is result
+(define (fib x y p pp)
+    (if (< x 2)
+        (+ x y)
+        (fib (-1+ x) (
