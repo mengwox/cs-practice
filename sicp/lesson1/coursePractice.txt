@@ -71,3 +71,30 @@ procedure定义:尝试使用guess值,计算x的平方根
 procedure定义:计算平方根
 (define (sqrt x)
     (try 1 x))
+
+procedure定义:计算平方根, 完全封装写法:
+
+procedure1:
+(define (abs x)
+    (if (< x 0)
+        (- x)
+        x))
+
+procedure2:
+(define (square x) (* x x))
+
+procedure3:
+(define (average x y) (/ (+ x y) 2))
+
+procedure4:
+(define (sqrt x)
+    (define (improve guess)
+            (average guess (/ x guess)))
+    (define (good-enough? guess)
+            (< (abs (- (square guess) x))
+                0.001))
+    (define (try guess)
+        (if (good-enough? guess)
+            guess
+            (try (improve guess))))
+    (try 1))
