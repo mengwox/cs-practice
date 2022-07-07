@@ -3,12 +3,19 @@
 [bilibili中文字幕课程]()
 
 ## 目的
-本目录,记录学习SICP课程的一些笔记和基于Java实现的练习, 后续会补充一些基于原课程记录的Lisp联系
+本目录,记录学习SICP课程的一些笔记和基于Java实现的练习, 后续会补充一些基于原课程记录的Lisp练习
 
 本课程使用编程语言`Lisp`
 
 # Lesson 1: Lisp概览
-For English:
+## For English:
+
+basic technique for controlling complexity:
+1. black box abstraction, 抽象
+2. conventional interfaces, 按照约定来实现相应的接口 
+   1. object-oriented programming, 面向对象编程
+   2. operations on aggregates, called streams
+3. metalinguistic abstraction, 元语言抽象making new languages
 
 when you study a cs language,
 there are some questions that u need to look for result:
@@ -17,8 +24,14 @@ there are some questions that u need to look for result:
 3. how to define a produce?
 4. what's the means of abstraction?
 
----
-中文描述:
+## 中文描述:
+
+控制系统复杂度的3种基础技术
+1. 抽象
+2. 按照约定,实现相应的接口
+   1. 面向对象编程
+   2. 流操作
+3. 元语言抽象, 自己编写一门新的计算机语言,来适配当前系统复杂度
 
 在学习一门计算机语言时, 你要提一些问题:
 1. 这门语言,有哪些基础元素?
