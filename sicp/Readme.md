@@ -51,3 +51,10 @@ kinds of expressions:
 - definitions
 - conditionals
 - combinations
+
+# lesson 3: 高阶过程
+procedure的高阶用法. 即procedure as a argument
+
+general pattern of sigma. two ways to implementation:
+- iteration
+- recursion

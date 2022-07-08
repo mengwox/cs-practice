@@ -23,6 +23,14 @@ general pattern of ∑:
                  b
                  (+ result (term a)))))
     (sum term a next b 0))
+再优化: TODO 这个优化,是视频中的,暂时看不太懂
+(define (sum term a next b)
+    (define (iter j ans)
+        (if (> j b)
+            ans
+            (iter (next j)
+                  (+ ans (term j)))))
+    (iter a 0))
 
 具体验证如下:=========================================
 case1: 求 i∈[a, b], i的和
