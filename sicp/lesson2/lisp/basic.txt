@@ -1,0 +1,7 @@
+lesson2 视频课程:
+了解每个"精灵"的名字
+
+if表达式:
+(if <predicate>
+     <consequent>
+     <alternative>)

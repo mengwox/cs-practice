@@ -1,24 +1,3 @@
-lesson2 视频课程:
-了解每个"精灵"的名字
-
-if表达式:
-(if <predicate>
-     <consequent>
-     <alternative>)
-
-Peano arithmetic: two ways to add whole numbers:
-a linear iteration:线性迭代
-(define (sum x y)
-    (if (= x 0)
-        y
-        (sum (-1+ x) (1+ y))))
-
-a linear recursion:线性递归
-(define (sum x y)
-    (if (= x 0)
-        y
-        (1+ (sum (-1+ x) y))))
-
 Fibonacci斐波那契数列:
 f(x+2) = f(x+1) + f(x)
 f(0) = 0;
@@ -48,4 +27,5 @@ x是斐波那契数列的第x项. 要知道f(x)的值,就需要知道f(x-1)和f(
             ((= x y) (+ p pp))
             ((> x y) (try-fib (1+ y) (+ p pp) p))))
     (try-fib 2 1 0))
+
 验证成功

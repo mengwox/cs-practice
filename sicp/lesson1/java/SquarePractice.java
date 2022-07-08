@@ -1,4 +1,4 @@
-package lesson1;
+package lesson1.java;
 
 /**
  * 求一个数的平方根

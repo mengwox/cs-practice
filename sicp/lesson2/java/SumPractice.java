@@ -1,4 +1,4 @@
-package lesson2;
+package lesson2.java;
 
 class SumPractice {
     public static void main(String[] args) {

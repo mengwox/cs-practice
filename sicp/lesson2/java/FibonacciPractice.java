@@ -1,4 +1,4 @@
-package lesson2;
+package lesson2.java;
 
 /**
  * 斐波那契数列java实现
