@@ -6,4 +6,7 @@ package lesson2;
  * @author mawenhao 2022/7/8
  */
 public class FibonacciPractice {
+    public static void main(String[] args) {
+
+    }
 }
