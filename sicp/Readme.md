@@ -35,9 +35,9 @@ there are some questions that u need to look for result:
 
 在学习一门计算机语言时, 你要提一些问题:
 1. 这门语言,有哪些基础元素?
-2. 这门语言,如何定义produce?
+2. 这门语言,如何定义程序?
 3. 这门语言,如何组合基础元素, 构造成combination或者produce?
-4. 这门语言,如何表达abstraction?
+4. 这门语言,如何表达抽象?
 
 # lesson 2: 计算过程
 For English:
@@ -58,3 +58,14 @@ procedure的高阶用法. 即procedure as a argument
 general pattern of sigma. two ways to implementation:
 - iteration
 - recursion
+
+# lesson 4: combination data 组合数据
+
+# lesson 5: Henderson Escher Example
+与其将一个任务,分解成二叉树结构的子任务.
+不如, 将一个任务,按领域/层次 划分成多个layer. 这样设计更健壮.
+
+真正的设计过程, 与其说是在设计程序, 不如说是在设计基于原本语言的一门新语言.
+really of The design process, is not so much implementing programs as implementing languages.
+
+# lesson 6: Symbolic Differentiation: Quotation
