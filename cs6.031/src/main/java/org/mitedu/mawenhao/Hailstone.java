@@ -1,5 +1,8 @@
 package org.mitedu.mawenhao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <p>
  * As a running example, we’re going to explore the hailstone sequence, which is
@@ -18,17 +21,24 @@ package org.mitedu.mawenhao;
  *
  * @author mawenhao 2022/12/3
  */
-public class HailstoneSequence {
+public class Hailstone {
     public static void main(String[] args) {
         int n = 3;
+        List<Integer> list = Hailstone.hailstoneSequence(n);
+        System.out.println(list);
+    }
+
+    private static List<Integer> hailstoneSequence(int n) {
+        final List<Integer> list = new ArrayList<>();
         while (n != 1) {
-            System.out.print(n + ",");
+            list.add(n);
             if (n % 2 == 0) {
                 n = n / 2;
             } else {
                 n = 3 * n + 1;
             }
         }
-        System.out.println(n);
+        list.add(n);
+        return list;
     }
 }

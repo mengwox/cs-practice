@@ -16,3 +16,9 @@ three kinds of checking that language can provide:
 3. no checking
 
 静态检查`优于`动态检查`优于`没有检查
+
+MIT 6.005课程模板:
+
+- Safe from bugs. 正确精密(当前表现行为良好), 可防御性(未来表现行为良好)
+- Easy to understand. 代码可读性,在未来如果出了问题,任何一个开发都可以看懂并fixing bugs
+- Ready for change. 软件经常变化,有些设计使得软件易于变化
