@@ -1,4 +1,4 @@
-package org.helloalgo.mawenhao;
+package org.helloalgo.mawenhao.queue;
 
 import java.util.EmptyStackException;
 

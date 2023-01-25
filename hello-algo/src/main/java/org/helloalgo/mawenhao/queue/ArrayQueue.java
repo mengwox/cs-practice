@@ -1,4 +1,4 @@
-package org.helloalgo.mawenhao;
+package org.helloalgo.mawenhao.queue;
 
 /**
  * 基于数组,实现队列Queue

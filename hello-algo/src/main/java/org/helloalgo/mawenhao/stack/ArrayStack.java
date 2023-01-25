@@ -1,4 +1,4 @@
-package org.helloalgo.mawenhao;
+package org.helloalgo.mawenhao.stack;
 
 import java.util.ArrayList;
 import java.util.EmptyStackException;
