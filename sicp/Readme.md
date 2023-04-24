@@ -52,12 +52,24 @@ kinds of expressions:
 - conditionals
 - combinations
 
+## 中文描述
+表达式的种类
+1. 数字
+2. 字符
+3. lambda表达式
+4. 函数定义
+5. 条件
+6. 组合
+
 # lesson 3: 高阶过程
 procedure的高阶用法. 即procedure as a argument
 
 general pattern of sigma. two ways to implementation:
 - iteration
 - recursion
+
+函数当做另一个函数的入参.
+
 
 # lesson 4: combination data 组合数据
 

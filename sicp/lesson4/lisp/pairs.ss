@@ -1,4 +1,4 @@
-pairs序列, 真正的定义
+;pairs序列, 真正的定义
 (define (cons a b)
     (lambda (pick)
         (cond

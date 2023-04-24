@@ -27,7 +27,9 @@ public class BubbleSort {
                 }
             }
         }
-        System.out.println(Arrays.toString(nums));
+        String string = Arrays.toString(nums);
+        System.out.println(string);
+
         return count;
     }
 }

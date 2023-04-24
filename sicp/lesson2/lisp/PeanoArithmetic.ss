@@ -1,0 +1,12 @@
+;Peano arithmetic: two ways to add whole numbers:
+;a linear iteration:线性迭代
+(define (sum x y)
+    (if (= x 0)
+        y
+        (sum (-1 + x) (1 + y))))
+
+;a linear recursion:线性递归
+(define (sum x y)
+    (if (= x 0)
+        y
+        (1 + (sum (-1 + x) y))))
