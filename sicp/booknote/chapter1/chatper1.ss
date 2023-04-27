@@ -1,4 +1,4 @@
-(define pi 3 .14159)
+(define pi 3.14159)
 
 (define radius 10)
 
@@ -16,7 +16,7 @@
 ; (cond
 ;   (<p1> <e1>)
 ;   (<p2> <e2>)
-;   ...
+;  ...
 ;   (<pn> <en>))
 ; 例如,求一个数的绝对值
 (define (abs-cond x)
@@ -43,8 +43,8 @@
 (abs-if 0)
 
 ; and or not 与或非
-; (and <e1> ... <en>)
-; (or <e1> ... <en>)
+; (and <e1>... <en>)
+; (or <e1>... <en>)
 ; (not <e>)
 
 ; 1.1.7 Example:Square Roots By Newton's Method
@@ -96,3 +96,19 @@
 ;判断guess是否达到预期
 (define (good-enough? a b)
     (< (abs (- b (square a))) 0.001))
+
+;Internal definitions and block structure
+(define (sqrt x)
+    (define (sqrt-iter guess)
+        (if (good-enough? guess)
+            guess
+            (sqrt-iter (improve guess))))
+    (define (good-enough? guess)
+        (< (abs (- (/ x guess) guess)) 0.0000001))
+    (define (improve guess)
+        (avg (/ x guess) guess))
+    (define (avg a b) (/ (+ a b) 2))
+    (sqrt-iter 1.0))
+;如上的写法,可以避免当有其他函数也叫good-enough?时的迷惑
+;这样的写法结构叫做'block structure'
+;其实和java的匿名内部class类似
