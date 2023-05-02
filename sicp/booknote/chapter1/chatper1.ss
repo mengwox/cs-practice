@@ -1,4 +1,4 @@
-(define pi 3.14159)
+(define pi 3 .14159)
 
 (define radius 10)
 
@@ -60,7 +60,7 @@
     (if (< x 0) (- x) x))
 ;判断预期值的精度是否足够好
 (define (good-enough? a b)
-    (< (sqrt-abs (- b (square a))) 0.0001))
+    (< (sqrt-abs (- b (square a))) .0001))
 
 ;牛顿法求y的平方根,并以x作为预期值
 (define (sqrt-pre x y)
@@ -70,12 +70,12 @@
 
 ;求平方根
 (define (my-sqrt y)
-    (sqrt-pre 1.0 y))
+    (sqrt-pre 1 .0 y))
 
 ;教材标准写法
 ;最外层,求x的平方根
 (define (sqrt x)
-    (sqrt-iter 1.0 x))
+    (sqrt-iter 1 .0 x))
 ;设置预期值guess,递归计算x的平方根
 (define (sqrt-iter guess x)
     (if (good-enough? guess x)
@@ -95,7 +95,7 @@
     (* x x))
 ;判断guess是否达到预期
 (define (good-enough? a b)
-    (< (abs (- b (square a))) 0.001))
+    (< (abs (- b (square a))) .001))
 
 ;Internal definitions and block structure
 (define (sqrt x)
@@ -104,11 +104,78 @@
             guess
             (sqrt-iter (improve guess))))
     (define (good-enough? guess)
-        (< (abs (- (/ x guess) guess)) 0.0000001))
+        (< (abs (- (/ x guess) guess)) .0000001))
     (define (improve guess)
         (avg (/ x guess) guess))
     (define (avg a b) (/ (+ a b) 2))
-    (sqrt-iter 1.0))
+    (sqrt-iter 1 .0))
 ;如上的写法,可以避免当有其他函数也叫good-enough?时的迷惑
 ;这样的写法结构叫做'block structure'
 ;其实和java的匿名内部class类似
+;local name 和 free name的区别
+;applicative order model evalution和normal order model evalution的区别
+
+;Figure1.4, 求n的阶乘
+;尾递归实现
+(define (factorial n)
+    (if (= n 1)
+        1
+        (* n (factorial (- n 1)))))
+;线性递归实现
+;a linear recursive process
+(define (factorial n)
+    (define (fact-iter res n)
+        (if (< n 2)
+            res
+            (fact-iter (* res n) (- n 1))))
+    (fact-iter 1 n))
+;线性递归,从小到大计算
+(define (factorial n)
+    (define (iter product counter)
+        (if (> counter n)
+            product
+            (iter
+                (* product counter)
+                (+ counter 1)
+                n)))
+    (fact-iter 1 1 n))
+
+;1.2.2 Tree Recursion
+;树递归
+;Fibonacci numbers斐波那契数列
+(define (fib n)
+    (cond
+        ((= n 0) 0)
+        ((= n 1) 1)
+        (else (+ (fib (- n 1))
+                  (fib (- n 2))))))
+
+(define (fib n)
+    (fib-iter 1 0 n))
+
+(define (fib-iter a b count)
+    (if (= count 0)
+        b
+        (fib-iter (+ a b) a (- count 1))))
+
+;Example:Counting change
+;How many different ways can we make change of $1.00, given half-dollars, quarters, dimes, nickels, and pennies?
+;1美元有多少种组合方式? 由50美分,25美分,10美分,5美分,1美分组成
+(define (count-change amount)
+    (cc amount 5))
+(define (cc amount kinds-of-coins)
+    (cond ((= amount 0) 1)
+        ((or (< amount 0) (= kinds-of-coins 0)) 0)
+        (else (+ (cc amount
+                     (- kinds-of-coins 1))
+                  (cc (- amount
+                          (first-denimination kinds-of-coins))
+                      kinds-of-coins)))))
+
+(define (first-denimination kinds-of-coins)
+    (cond ((= kinds-of-coins 1) 1)
+        ((= kinds-of-coins 2) 5)
+        ((= kinds-of-coins 3) 10)
+        ((= kinds-of-coins 4) 25)
+        ((= kinds-of-coins 5) 50)))
+;请优化以上代码,采用线性递归解决问题
