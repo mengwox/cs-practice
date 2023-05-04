@@ -20,10 +20,10 @@
 ;   (<pn> <en>))
 ; 例如,求一个数的绝对值
 (define (abs-cond x)
-    (cond
-        ((< x 0) (- x))
-        ((= x 0) 0)
-        ((> x 0) x)))
+  (cond
+    ((< x 0) (- x))
+    ((= x 0) 0)
+    ((> x 0) x)))
 
 ;测试
 (abs-cond 10)
@@ -33,9 +33,9 @@
 ; if条件语句格式: (if (predicate) (consequent) (alternative))
 ; (if (条件判断) (判断结果true时) (判断结果false时))
 (define (abs-if x)
-    (if (< x 0)
-        (- x)
-        x))
+  (if (< x 0)
+    (- x)
+    x))
 
 ;测试
 (abs-if 10)
@@ -52,63 +52,63 @@
 
 ;求平方
 (define (square x)
-    (* x x))
+  (* x x))
 ;优化预期值x=(x+y)/2效率太低-->优化为:x=(x+y/x)/2
 (define (improve x y)
-    (/ (+ x (/ y x)) 2))
+  (/ (+ x (/ y x)) 2))
 (define (sqrt-abs x)
-    (if (< x 0) (- x) x))
+  (if (< x 0) (- x) x))
 ;判断预期值的精度是否足够好
 (define (good-enough? a b)
-    (< (sqrt-abs (- b (square a))) .0001))
+  (< (sqrt-abs (- b (square a))) .0001))
 
 ;牛顿法求y的平方根,并以x作为预期值
 (define (sqrt-pre x y)
-    (if (good-enough? x y)
-        x
-        (sqrt-pre (improve x y) y)))
+  (if (good-enough? x y)
+    x
+    (sqrt-pre (improve x y) y)))
 
 ;求平方根
 (define (my-sqrt y)
-    (sqrt-pre 1 .0 y))
+  (sqrt-pre 1 .0 y))
 
 ;教材标准写法
 ;最外层,求x的平方根
 (define (sqrt x)
-    (sqrt-iter 1 .0 x))
+  (sqrt-iter 1 .0 x))
 ;设置预期值guess,递归计算x的平方根
 (define (sqrt-iter guess x)
-    (if (good-enough? guess x)
-        guess
-        (sqrt-iter (improve guess x) x)))
+  (if (good-enough? guess x)
+    guess
+    (sqrt-iter (improve guess x) x)))
 ;优化guess预期值
 (define (improve guess x)
-    (avg guess (/ x guess)))
+  (avg guess (/ x guess)))
 ;求x和y的平均值
 (define (avg x y)
-    (/ (+ x y) 2))
+  (/ (+ x y) 2))
 ;求x的绝对值
 (define (abs x)
-    (if (< x 0) (- x) x))
+  (if (< x 0) (- x) x))
 ;求平方
 (define (square x)
-    (* x x))
+  (* x x))
 ;判断guess是否达到预期
 (define (good-enough? a b)
-    (< (abs (- b (square a))) .001))
+  (< (abs (- b (square a))) .001))
 
 ;Internal definitions and block structure
 (define (sqrt x)
-    (define (sqrt-iter guess)
-        (if (good-enough? guess)
-            guess
-            (sqrt-iter (improve guess))))
-    (define (good-enough? guess)
-        (< (abs (- (/ x guess) guess)) .0000001))
-    (define (improve guess)
-        (avg (/ x guess) guess))
-    (define (avg a b) (/ (+ a b) 2))
-    (sqrt-iter 1 .0))
+  (define (sqrt-iter guess)
+    (if (good-enough? guess)
+      guess
+      (sqrt-iter (improve guess))))
+  (define (good-enough? guess)
+    (< (abs (- (/ x guess) guess)) .0000001))
+  (define (improve guess)
+    (avg (/ x guess) guess))
+  (define (avg a b) (/ (+ a b) 2))
+  (sqrt-iter 1 .0))
 ;如上的写法,可以避免当有其他函数也叫good-enough?时的迷惑
 ;这样的写法结构叫做'block structure'
 ;其实和java的匿名内部class类似
@@ -118,64 +118,122 @@
 ;Figure1.4, 求n的阶乘
 ;尾递归实现
 (define (factorial n)
-    (if (= n 1)
-        1
-        (* n (factorial (- n 1)))))
+  (if (= n 1)
+    1
+    (* n (factorial (- n 1)))))
 ;线性递归实现
 ;a linear recursive process
 (define (factorial n)
-    (define (fact-iter res n)
-        (if (< n 2)
-            res
-            (fact-iter (* res n) (- n 1))))
-    (fact-iter 1 n))
+  (define (fact-iter res n)
+    (if (< n 2)
+      res
+      (fact-iter (* res n) (- n 1))))
+  (fact-iter 1 n))
 ;线性递归,从小到大计算
 (define (factorial n)
-    (define (iter product counter)
-        (if (> counter n)
-            product
-            (iter
-                (* product counter)
-                (+ counter 1)
-                n)))
-    (fact-iter 1 1 n))
+  (define (iter product counter)
+    (if (> counter n)
+      product
+      (iter
+        (* product counter)
+        (+ counter 1)
+        n)))
+  (fact-iter 1 1 n))
 
 ;1.2.2 Tree Recursion
 ;树递归
 ;Fibonacci numbers斐波那契数列
 (define (fib n)
-    (cond
-        ((= n 0) 0)
-        ((= n 1) 1)
-        (else (+ (fib (- n 1))
-                  (fib (- n 2))))))
+  (cond
+    ((= n 0) 0)
+    ((= n 1) 1)
+    (else (+ (fib (- n 1))
+            (fib (- n 2))))))
 
 (define (fib n)
-    (fib-iter 1 0 n))
+  (fib-iter 1 0 n))
 
 (define (fib-iter a b count)
-    (if (= count 0)
-        b
-        (fib-iter (+ a b) a (- count 1))))
+  (if (= count 0)
+    b
+    (fib-iter (+ a b) a (- count 1))))
 
 ;Example:Counting change
 ;How many different ways can we make change of $1.00, given half-dollars, quarters, dimes, nickels, and pennies?
 ;1美元有多少种组合方式? 由50美分,25美分,10美分,5美分,1美分组成
 (define (count-change amount)
-    (cc amount 5))
+  (cc amount 5))
 (define (cc amount kinds-of-coins)
-    (cond ((= amount 0) 1)
-        ((or (< amount 0) (= kinds-of-coins 0)) 0)
-        (else (+ (cc amount
-                     (- kinds-of-coins 1))
-                  (cc (- amount
-                          (first-denimination kinds-of-coins))
-                      kinds-of-coins)))))
+  (cond ((= amount 0) 1)
+    ((or (< amount 0) (= kinds-of-coins 0)) 0)
+    (else (+ (cc amount
+               (- kinds-of-coins 1))
+            (cc (- amount
+                  (first-denimination kinds-of-coins))
+              kinds-of-coins)))))
 
 (define (first-denimination kinds-of-coins)
-    (cond ((= kinds-of-coins 1) 1)
-        ((= kinds-of-coins 2) 5)
-        ((= kinds-of-coins 3) 10)
-        ((= kinds-of-coins 4) 25)
-        ((= kinds-of-coins 5) 50)))
+  (cond ((= kinds-of-coins 1) 1)
+    ((= kinds-of-coins 2) 5)
+    ((= kinds-of-coins 3) 10)
+    ((= kinds-of-coins 4) 25)
+    ((= kinds-of-coins 5) 50)))
 ;请优化以上代码,采用线性递归解决问题
+;TODO
+
+;1.2.3 Orders of Growth
+;Exercise 1.14,1.15
+;1.2.4 Exponentiation
+;求幂
+(define (expt b n)
+  (if (= n 0)
+    1
+    (* b (expt b (- n 1)))))
+
+(define (expt b n)
+  (define (expt-iter b res n)
+    (if (= n 0)
+      res
+      (expt-iter b (* res b) (- n 1))))
+  (expt-iter b 1 n))
+;n/2整除,则expt b n = (expt b (n/2))的平方
+;n/2不整除,则expt b n = (expt b (n-1)/2)的平方 * b
+(define (fast-expt b n)
+  (cond
+    ((= n 0) 1)
+    ((even? n) (square (fast-expt b (/ n 2))))
+    (else (* b (fast-expt b (- n 1))))))
+(define (even? n)
+  (= (remainder n 2) 0))
+
+;1.2.5 Greatest Common Divisors
+;求最大公约数GCD
+(define (gcd a b)
+  (if (= b 0)
+    a
+    (gcd b (remainder a b))))
+
+;(gcd 206 40)
+;the normal-order evaluation 18次
+;详细trace见https://sicp-solutions.net/post/sicp-solution-exercise-1-20/
+;the applicative-order evaluation 4次
+(gcd 206 40)
+(gcd 40 6) ;-->1次
+(gcd 6 4) ;-->1次
+(gcd 4 2) ;-->1次
+(gcd 2 0) ;-->1次
+
+;1.2.6 Example:Testing for Primality
+;求一个数的最小公倍数
+;时间复杂度n的平方根
+(define (find-divisor n test-divisor)
+  (cond
+    ((> (square test-divisor) n) n)
+    ((divides? n test-divisor) test-divisor)
+    (else (find-divisor n (+ test-divisor 1)))))
+
+(define (divides? a b) (= (remainder a b) 0))
+(define (smallest-divisor n) (find-divisor n 2))
+;判断一个数是否是素数
+(define (prime? n)
+  (= (smallest-divisor n) n))
