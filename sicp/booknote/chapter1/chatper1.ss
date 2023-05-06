@@ -224,16 +224,64 @@
 (gcd 2 0) ;-->1次
 
 ;1.2.6 Example:Testing for Primality
-;求一个数的最小公倍数
-;时间复杂度n的平方根
-(define (find-divisor n test-divisor)
-  (cond
-    ((> (square test-divisor) n) n)
-    ((divides? n test-divisor) test-divisor)
-    (else (find-divisor n (+ test-divisor 1)))))
 
-(define (divides? a b) (= (remainder a b) 0))
-(define (smallest-divisor n) (find-divisor n 2))
-;判断一个数是否是素数
+;求x的平方
+(define (square x)
+  (* x x))
+
+;判断b是否被a整除
+(define (divides? b a)
+  (= (remainder b a) 0))
+
+;迭代n
+(define (next n)
+  (if (= n 2)
+    3
+    (+ n 2)))
+
+;以test-diviors作为测试数据,测试是否是n的最小公倍数
+(define (find-diviors n test-diviors)
+  (cond
+    ;如果test-diviors的平方 大于 n,则返回n
+    ((> (square test-diviors) n) n)
+    ;n能被test-diviors整除,则返回test-diviors作为最小公倍数
+    ((divides? n test-diviors) test-diviors)
+    ;否则,test-diviors自增1,继续迭代find-diviors
+    (else (find-diviors n (next test-diviors)))))
+
+;求n的最小公倍数
+;时间复杂度n的平方根
+(define (smallest-diviors n)
+  (find-diviors n 2))
+
+;判断n是否是素数
 (define (prime? n)
-  (= (smallest-divisor n) n))
+  (= (smallest-diviors n) n))
+
+;费马小定理 Fermat's Little Theorem
+;如果n是一个素数, 且a是一个任意的小于n的随机数
+;那么a^n mod n === a mod n
+;congruent mod函数定义
+;base^m mod m === base mod m
+(define (expmod base exp m)
+  (cond
+    ((= exp 0) 1)
+    ((even? exp)
+      (remainder
+        (square (expmod base (/ exp 2) m))
+        m))
+    (else
+      (remainder
+        (* base (expmod base (- exp 1) m))
+        m))))
+;费马小定理-测试方法
+(define (fermat-test n)
+  (define (try-it a)
+    (= (expmod a n n) a))
+  (try-it (+ 1 (random (- n 1)))))
+
+;判断n是否是素数,并执行times次fermat-test函数
+(define (fast-prime? n times)
+  (cond ((= times 0) #t)
+    ((fermat-test n) (fast-prime? n (- times 1)))
+    (else #f)))
