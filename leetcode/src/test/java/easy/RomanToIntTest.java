@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * {@link RomanToInt}
  */
 class RomanToIntTest {
-
 	@Test
 	void romanToInt() {
 		RomanToInt roman = new RomanToInt();
+
 		assertEquals(3, roman.romanToInt("III"));
 		assertEquals(4, roman.romanToInt("IV"));
 		assertEquals(9, roman.romanToInt("IX"));

@@ -4,12 +4,6 @@ package easy;
  * [2562]找出数组的串联值
  */
 public class FindTheArrayConcatVal {
-	public static void main(String[] args) {
-		FindTheArrayConcatVal test = new FindTheArrayConcatVal();
-		System.out.println(test.improveFindTheArrayConcVal(new int[]{7, 52, 2, 4}) == 596);
-		System.out.println(test.improveFindTheArrayConcVal(new int[]{5, 14, 13, 8, 12}) == 673);
-	}
-
 	public long improveFindTheArrayConcVal(int[] nums) {
 		long result = 0L;
 		//边界条件

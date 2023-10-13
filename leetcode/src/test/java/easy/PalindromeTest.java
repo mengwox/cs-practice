@@ -13,6 +13,7 @@ class PalindromeTest {
 	@Test
 	public void isPalindrome() {
 		Palindrome palindrome = new Palindrome();
+
 		assertFalse(palindrome.isPalindrome(122));
 		assertFalse(palindrome.isPalindrome(-121));
 		assertFalse(palindrome.isPalindrome(10));
