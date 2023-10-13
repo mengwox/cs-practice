@@ -12,7 +12,11 @@ public class TwoNum {
 		for (int i = 0; i < nums.length; i++) {
 			int num = nums[i];
 			if (map.get(target - num) != null) {
-				return new int[]{i, map.get(target - num)};
+				if (i < map.get(target - num)) {
+					return new int[]{i, map.get(target - num)};
+				} else {
+					return new int[]{map.get(target - num), i};
+				}
 			}
 			map.put(num, i);
 		}
