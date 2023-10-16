@@ -14,13 +14,6 @@ class RemoveDuplicatesTest {
 		assertion(new int[]{1, 1, 2}, new int[]{1, 2}, function);
 	}
 
-	@Test
-	void oldRemoveDuplicates() {
-		Function<int[], Integer> function = solution::oldRemoveDuplicates;
-		assertion(new int[]{1, 1, 2, 2, 4, 5, 6}, new int[]{1, 2, 4, 5, 6}, function);
-		assertion(new int[]{1, 1, 2}, new int[]{1, 2}, function);
-	}
-
 	private void assertion(int[] nums, int[] expectedNums, Function<int[], Integer> function) {
 		int k = function.apply(nums);
 		assert k == expectedNums.length;
