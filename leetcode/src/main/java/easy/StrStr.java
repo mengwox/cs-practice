@@ -5,12 +5,12 @@ package easy;
  */
 public class StrStr {
 	public int strStr(String haystack, String needle) {
-		int index = 0;
-		for (int i = 0; i < haystack.length(); i++) {
-			if (haystack.charAt(i) != needle.charAt(i - index)) {
-				i = index++;
-			} else if (i - index == needle.length() - 1) {
-				return index;
+		int slow = 0;
+		for (int fast = 0; fast < haystack.length(); fast++) {
+			if (haystack.charAt(fast) != needle.charAt(fast - slow)) {
+				fast = slow++;
+			} else if (fast - slow == needle.length() - 1) {
+				return slow;
 			}
 		}
 		return -1;
