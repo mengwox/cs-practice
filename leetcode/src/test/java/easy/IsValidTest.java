@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class IsValidTest {
+	private final IsValid solution = new IsValid();
 
 	@Test
 	void isValid() {
-		IsValid solution = new IsValid();
 		assertTrue(solution.isValid("()"));
 		assertTrue(solution.isValid("()[]{}"));
 		assertTrue(solution.isValid("{()}"));

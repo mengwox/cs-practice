@@ -10,15 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * {@link Palindrome#isPalindrome} 测试
  */
 class PalindromeTest {
+	private final Palindrome solution = new Palindrome();
+
 	@Test
 	public void isPalindrome() {
-		Palindrome palindrome = new Palindrome();
+		assertFalse(solution.isPalindrome(122));
+		assertFalse(solution.isPalindrome(-121));
+		assertFalse(solution.isPalindrome(10));
 
-		assertFalse(palindrome.isPalindrome(122));
-		assertFalse(palindrome.isPalindrome(-121));
-		assertFalse(palindrome.isPalindrome(10));
-		assertTrue(palindrome.isPalindrome(1001));
-		assertTrue(palindrome.isPalindrome(121));
-		assertTrue(palindrome.isPalindrome(0));
+		assertTrue(solution.isPalindrome(1001));
+		assertTrue(solution.isPalindrome(121));
+		assertTrue(solution.isPalindrome(0));
 	}
 }

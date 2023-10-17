@@ -3,7 +3,7 @@ package easy;
 import org.junit.jupiter.api.Test;
 
 class StrStrTest {
-	private StrStr solution = new StrStr();
+	private final StrStr solution = new StrStr();
 
 	@Test
 	void strStr() {
