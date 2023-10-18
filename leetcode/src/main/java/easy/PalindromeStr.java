@@ -3,7 +3,7 @@ package easy;
 /**
  * 125.验证回文串
  */
-public class IsPalindrome {
+public class PalindromeStr {
 	public boolean isPalindrome(String s) {
 		int start = 0;
 		int end = s.length() - 1;
