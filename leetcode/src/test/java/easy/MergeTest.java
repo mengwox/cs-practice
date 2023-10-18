@@ -9,5 +9,7 @@ class MergeTest {
 	void merge() {
 		solution.merge(new int[]{1, 2, 3, 0, 0, 0}, 3, new int[]{2, 5, 6}, 3);
 		solution.merge(new int[]{4, 5, 6, 0, 0, 0}, 3, new int[]{1, 2, 3}, 3);
+		solution.merge(new int[]{0, 0, 0, 0, 0, 0}, 3, new int[]{1, 2, 3}, 3);
+		solution.merge(new int[]{0, 0, 0, 0, 0, 0}, 3, new int[]{-3, -2, -1}, 3);
 	}
 }
