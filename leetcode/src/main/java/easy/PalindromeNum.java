@@ -3,7 +3,7 @@ package easy;
 /**
  * 9.回文数
  */
-public class Palindrome {
+public class PalindromeNum {
 	public boolean isPalindrome(int x) {
 		//负数
 		if (x < 0) {

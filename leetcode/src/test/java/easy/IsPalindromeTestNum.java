@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class IsPalindromeTest {
+class IsPalindromeTestNum {
 	private final IsPalindrome solution = new IsPalindrome();
 
 	@Test

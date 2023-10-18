@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * 9.回文数
- * {@link Palindrome#isPalindrome} 测试
+ * {@link PalindromeNum#isPalindrome} 测试
  */
-class PalindromeTest {
-	private final Palindrome solution = new Palindrome();
+class PalindromeNumTest {
+	private final PalindromeNum solution = new PalindromeNum();
 
 	@Test
 	public void isPalindrome() {
