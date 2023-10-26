@@ -1,28 +1,32 @@
 package easy;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
 
+/**
+ * 349.两个数组的交集
+ */
 public class Intersection {
 	public int[] intersection(int[] nums1, int[] nums2) {
-		Set<Integer> set = new HashSet<>();
-		for (int ele : nums1) {
-			if (set.contains(ele)) {
-				continue;
-			}
-			if (nums2Contains(nums2, ele)) {
-				set.add(ele);
+		Arrays.sort(nums1);
+		Arrays.sort(nums2);
+		int i1 = 0, i2 = 0, index = 0;
+		int len1 = nums1.length, len2 = nums2.length;
+		int[] ans = new int[Math.min(len1, len2)];
+		while (i1 < len1 && i2 < len2) {
+			int n1 = nums1[i1];
+			int n2 = nums2[i2];
+			if (n1 < n2) {
+				i1++;
+			} else if (n1 > n2) {
+				i2++;
+			} else {
+				if (index == 0 || n1 != ans[index - 1]) {
+					ans[index++] = n1;
+				}
+				i1++;
+				i2++;
 			}
 		}
-		return set.stream().mapToInt(Integer::intValue).toArray();
-	}
-
-	private boolean nums2Contains(int[] nums, int ele) {
-		for (int num : nums) {
-			if (ele == num) {
-				return true;
-			}
-		}
-		return false;
+		return Arrays.copyOfRange(ans, 0, index);
 	}
 }
