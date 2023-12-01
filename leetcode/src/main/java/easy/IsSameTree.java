@@ -2,6 +2,9 @@ package easy;
 
 import easy.inner.TreeNode;
 
+/**
+ * No.100 相同的树
+ */
 public class IsSameTree {
 	public boolean isSameTree(TreeNode p, TreeNode q) {
 		if (p == null && q == null) {
