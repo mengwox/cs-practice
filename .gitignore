@@ -28,3 +28,4 @@ out/*
 *.iml
 output
 notebook/.idea/*
+leetcode/temp/*
