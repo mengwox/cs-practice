@@ -7,11 +7,11 @@ package org.helloalgo.mawenhao.tree;
  */
 public class TreeNodeDemo {
     public static void main(String[] args) {
-        // treeNodeThreeOrder();
+        treeNodeThreeOrder();
         // 二叉搜索树
-        TreeNode root = buildBinarySearchTree();
+//        TreeNode root = buildBinarySearchTree();
         // search(root, 6);
-        System.out.println(insert(root, 16));
+//        System.out.println(insert(root, 16));
     }
 
     /**
@@ -74,23 +74,19 @@ public class TreeNodeDemo {
         TreeNode root = new TreeNode(1);
         root.setLeft(new TreeNode(2));
         root.setRight(new TreeNode(3));
-        root.getLeft()
-            .setLeft(new TreeNode(4));
-        root.getLeft()
-            .setRight(new TreeNode(5));
-        root.getRight()
-            .setLeft(new TreeNode(6));
-        root.getRight()
-            .setRight(new TreeNode(7));
+        root.getLeft().setLeft(new TreeNode(4));
+        root.getLeft().setRight(new TreeNode(5));
+        root.getRight().setLeft(new TreeNode(6));
+        root.getRight().setRight(new TreeNode(7));
         System.out.println("前序遍历start:");
         TreeNode.preOrder(root);
-        System.out.println("前序遍历end:");
+        System.out.println("\n前序遍历end.");
         System.out.println("中序遍历start:");
         TreeNode.inOrder(root);
-        System.out.println("中序遍历end:");
+        System.out.println("\n中序遍历end.");
         System.out.println("后序遍历start:");
         TreeNode.postOrder(root);
-        System.out.println("后序遍历end:");
+        System.out.println("\n后序遍历end.");
     }
 
     /**
@@ -102,43 +98,23 @@ public class TreeNodeDemo {
         TreeNode root = new TreeNode(8);
         root.setLeft(new TreeNode(4));
 
-        root.getLeft()
-            .setLeft(new TreeNode(2));
-        root.getLeft()
-            .setRight(new TreeNode(6));
+        root.getLeft().setLeft(new TreeNode(2));
+        root.getLeft().setRight(new TreeNode(6));
 
-        root.getLeft()
-            .getLeft()
-            .setLeft(new TreeNode(1));
-        root.getLeft()
-            .getLeft()
-            .setRight(new TreeNode(3));
-        root.getLeft()
-            .getRight()
-            .setLeft(new TreeNode(5));
-        root.getLeft()
-            .getRight()
-            .setRight(new TreeNode(7));
+        root.getLeft().getLeft().setLeft(new TreeNode(1));
+        root.getLeft().getLeft().setRight(new TreeNode(3));
+        root.getLeft().getRight().setLeft(new TreeNode(5));
+        root.getLeft().getRight().setRight(new TreeNode(7));
 
         root.setRight(new TreeNode(12));
 
-        root.getRight()
-            .setLeft(new TreeNode(10));
-        root.getRight()
-            .setRight(new TreeNode(14));
+        root.getRight().setLeft(new TreeNode(10));
+        root.getRight().setRight(new TreeNode(14));
 
-        root.getRight()
-            .getLeft()
-            .setLeft(new TreeNode(9));
-        root.getRight()
-            .getLeft()
-            .setRight(new TreeNode(11));
-        root.getRight()
-            .getRight()
-            .setLeft(new TreeNode(13));
-        root.getRight()
-            .getRight()
-            .setRight(new TreeNode(15));
+        root.getRight().getLeft().setLeft(new TreeNode(9));
+        root.getRight().getLeft().setRight(new TreeNode(11));
+        root.getRight().getRight().setLeft(new TreeNode(13));
+        root.getRight().getRight().setRight(new TreeNode(15));
 
         return root;
     }
