@@ -279,8 +279,6 @@ G1更关注GC停顿时间,用户可以设置一个预期的停顿时间
 
      - 适用于科学计算、后台处理等若干交互场景。
 
-
-
 3. 并发回收器【停顿时间优先】：CMS,G1
 
      - 用户线程和垃圾回收线程同时执行（但不一定是并行的,可能是交替执行的）,垃圾回收线程在执行的时候不会停顿用户线程的运行。
@@ -363,10 +361,11 @@ G1更关注GC停顿时间,用户可以设置一个预期的停顿时间
 3. arthas
 4. mat/perfma：内存相关信息
 5. gceasy.io/gcviewer
+6. gcviewer, 分析GC日志工具
 
 # 性能优化
 
-#### JVM全局理解图
+### JVM全局理解图
 
 ### OOM
 
@@ -376,7 +375,15 @@ G1更关注GC停顿时间,用户可以设置一个预期的停顿时间
 
 通过不断调整,观察GC日志的吞吐量和停顿时间,寻找最佳值
 
--XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+UseG1GC -Xloggc:gc.log gceasy.io
+-XX:+PrintGCDetails, 打印GC详情信息
+
+-XX:+PrintGCTimeStamps, 打印GC时间点
+
+-XX:+PrintGCDateStamps, 打印GC时间点
+
+-XX:+UseG1GC, 使用G1垃圾收集器
+
+-Xloggc:gc.log gceasy.io, 指定GC日志存储位置
 
 主要就是调整各种参数,垃圾收集器--->查看吞吐量和停顿时间的变量
 
@@ -384,3 +391,4 @@ G1更关注GC停顿时间,用户可以设置一个预期的停顿时间
 
 ### 性能优化指南
 
+​							
