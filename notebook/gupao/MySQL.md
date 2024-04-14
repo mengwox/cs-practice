@@ -88,8 +88,6 @@ redo log存储目录,见[MySQL 8.0官方文档](https://dev.mysql.com/doc/refman
 
 也是InnoDB存储引擎特有的日志类型，其主要作用是用于实现事务的原子性。当事务进行修改操作时，InnoDB会记录一份相反的操作到撤销日志中，如果事务执行失败或者调用了回滚操作，InnoDB可以利用撤销日志来将数据恢复到事务执行之前的状态。撤销日志还可以用于实现多版本并发控制（MVCC），使得在读取数据时可以获得事务开始前的数据快照。
 
-
-
 undo log和redo log都是和数据修改有关的日志,两者结合起来,就保证了事务的原子性和持久性,所以两者统称为:事务日志
 
 ```markdown
@@ -579,3 +577,97 @@ InnoDB支持行锁,表锁; MyISAM只支持表锁,具体内容可参考官网
 4. 尽量使用索引访问数据, 避免没有where条件的操作, 避免锁表
 5. 如果可以,将大的事务分解为一个个的小事务
 6. 使用等值查询而不是范围查询来查询数据,命中记录Record, 避免间隙锁对并发的影响
+
+
+## MySQL性能优化总结
+### MySQL集群
+
+#### 读写分离
+
+#### 主从复制
+
+由slave从节点,启用后台线程,去访问master主节点的binlog日志,通过binlog日志实现主从复制功能.
+
+因此,数据在主节点,从节点上存在数据一致性问题(因为,从节点复制存在延迟)
+
+而MySQL主从复制, 默认是**异步复制**
+
+![](md-images/MySQL/主从复制.png)
+
+##### 主从复制的数据一致性问题(主从延迟)解决方案
+
+1. 全同步复制
+
+   - 数据在master写入后, 需等待该数据在其所有的slave同步完成后,再返回.
+
+   - 缺点: 需等待所有slave同步完毕, 因此, 效率低, 耗时长.
+
+2. 半同步复制
+
+   - 数据在master写入后, 只需等待该数据在任意一个slave同步完成后即可返回.
+   - 相比较与全同步复制, 效率高些, 耗时可以接受. 因此**推荐该方案**
+   - 使用方式: 通过额外的插件提供`半同步复制`功能, 因此需手动下载该plugin
+
+###### 半同步复制插件安装
+
+```mysql
+-- 在主节点上, 下载并安装半同步复制主节点插件, 并命名为: semi_sync_master.so
+install plugin rpl_semi_sync_master soname 'semi_sync_master.so';
+
+-- 在从节点上, 下载并安装半同步复制从节点插件, 并命名为: semi_sync_slave.so
+install plugin rpl_semi_sync_slave soname 'semisync_slave.so';
+```
+
+下载安装之后, 半同步复制功能默认是关闭的,需手动开启或在my.conf配置开启
+
+![](md-images/MySQL/半同步复制配置.png)
+
+- 水平分库分表
+- 垂直分库
+
+#### 常见的MySQL高可用方案
+
+1. 主从HAProxy + keepalived
+2. NDB Cluster
+3. Galera Cluster For MySQL
+4. MMM(MySQL Master High Available)
+5. MMA, Master-Master replication manager For MySQL
+6. MGR, MySQL Group Replication, 即MySQL Cluster
+
+#### 优化器层面
+
+##### 慢SQL优化
+
+哪些SQL语句慢? 开启MySQL慢日志记录配置
+
+![](md-images/MySQL/慢查询是否开启.png)
+
+- `slow_query_log`表示慢查询日志是否开启; ON开启, OFF关闭
+- `slow_query_log_file`显示慢查询日志的具体存放位置
+- `long_query_time`表示具体多少秒被认作为慢查询, 默认是10秒
+
+如何分析MySQL生成的慢日志? 比如: 如何统计慢日志中, 出现最频繁的10条SQL语句
+
+- 使用mysql附带的工具: `mysqldumpslow`
+
+`show profiles`工具, 查看mysql各功能情况
+
+##### 根据执行计划进行优化
+
+explain sql语句,结果列的含义, 见[MySQL官网](https://dev.mysql.com/doc/refman/8.0/en/explain-output.html)
+
+![](md-images/MySQL/EXPLAIN输出列说明.png)
+
+MySQL优化:
+
+表的存储
+
+1. SQL与索引
+
+2. 存储引擎与表结构
+
+3. 数据库架构(主从,集群,高可用架构等等)
+
+4. MySQL配置调优
+
+5. 硬件与操作系统
